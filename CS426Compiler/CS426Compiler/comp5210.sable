@@ -1,0 +1,153 @@
+Package comp5210;
+
+Helpers
+    digit = ['0' .. '9'] ;
+    ascii_char = [32 .. 127] ;
+    letter = [['a' .. 'z'] + ['A' .. 'Z']] ;
+	//all ascii_char without "
+	ascii_wo = 32|33|[35 .. 127];
+	eol = 10|13 ;
+	 
+Tokens
+
+	whitespace = (' '|9|10|13)+;
+	comment = '//' ascii_char* ;
+
+	//Operators, tested in testfile1
+	//boolean
+	and = '&&';
+	or = '||';
+	not = '!';
+	not_equal = '!=';
+	less_than = '<';
+	greater_than = '>';
+	greater_equal = '>=';
+	less_equal = '<=';
+	equal_to = '==';
+	//operators
+	multiply = '*';
+	divide = '/';
+	plus = '+';
+	minus = '-';
+	equals = '=';
+	semicolon = ';';
+	comma = ',';
+
+	//full word tokens, tested in testfile2
+	public = 'public';
+	private = 'private';
+	main = 'main';
+	// You must implement a typed language where you declare variables
+	var = 'var';
+	//language must have constants
+	con = 'con';
+	
+	//action word tokens, tested in testfile3
+	return = 'return';
+	// IF/ELSE statements (no ELSE IF is required)
+	if = 'if';
+	else = 'else';
+	// WHILE LOOPs (no FOR loops, DO/WHILEs, or BREAKs are required)
+	while = 'while';
+	
+	//language types, tested in testfile4
+	//strings must be within "quotations" but are allowed to have quotes within them if a '\' comes before each "
+	string = '"'(ascii_wo+|'\''"')*'"';
+	// integer
+	int = digit+;
+	// floating point with or without exponential notation
+	float = digit+'.'digit+ ('e''-'?digit+)?;
+	// Variable names must allow “_”, but not two in a row.
+	id = letter((letter|digit)*'_'?)*;
+	
+	//word grouping symbols, tested in testfile5
+	open_parenthesis = '(';
+	close_parenthesis = ')';
+	open_brace = '{';
+	close_brace = '}';
+	open_bracket = '[';
+	close_bracket = ']';
+
+	//errors tested in testfile6-9
+	
+	/*
+	Documentation: C1C Werner helped me think of how to get my answer 
+	for id. He did not give me the answer he simply told me to not
+	include all characters, just letters and digits. 
+	*/
+
+IgnoredTokens
+	whitespace, 
+	comment;
+	
+Productions
+	  //program
+	  program = constants methods main_method;
+
+
+	  //list of constants
+	  constants = {constant} constant_declare constants | {nothing};
+
+
+	  //methods
+	  methods = {multiple} methods method_header open_brace list close_brace | {nothing};
+
+	  method_header = {right} public [void]:id [name]:id open_parenthesis formal_parameters close_parenthesis | {left} public [void]:id [name]:id open_parenthesis close_parenthesis;
+
+	 
+	  // main method
+	  main_method =  main_header open_brace list close_brace;
+
+	  main_header = public id main open_parenthesis close_parenthesis;
+
+	  
+	  // things to do to in things
+	  list = {var_declare} var_declare list | {con_declare} constant_declare list | {while_loop} while_loop list | {if_statement} if_statement list | {array_declare} array_declare list | {assign_statement} assign_statement list | {procedure_call} procedure_call list | {nothing};
+	  
+	  
+	  // Procedure Call
+	  procedure_call = {call} id open_parenthesis actual_parameters close_parenthesis semicolon | {nothing} id open_parenthesis close_parenthesis semicolon;
+
+	  
+	  // Parameters
+	  formal_parameters = {more} formal_parameters comma [type]:id [name]:id | {last} [type]:id [name]:id;
+
+	  actual_parameters = {more} actual_parameters comma parameters | {last} parameters;
+
+	  parameters = {numbers} exp | {strings} string;
+
+	  
+	  // declarations
+	  var_declare = [type]:id [name]:id semicolon;
+	  constant_declare = {int_declare} con [type]:id [name]:id equals int semicolon | {float_delcare} con [type]:id [name]:id equals float semicolon;
+
+	  // array declaration
+	  array_declare = [type]:id [name]:id open_bracket number close_bracket semicolon;
+
+	  
+	  // if statements
+	  if_statement = if open_parenthesis exp close_parenthesis open_brace list close_brace;
+
+	  // while loop
+	  while_loop = while open_parenthesis exp close_parenthesis open_brace list close_brace;
+
+	  
+	  // assignment statement
+	  assign_statement = {expression} id equals exp semicolon | {array} id open_bracket [in_bracket]:exp close_bracket equals [equalto]:exp semicolon;
+	  
+	  
+	  // mathematical and boolean expressions
+	  // OR AND != ==
+	  exp = {start} exp or comparators | {and} exp and comparators | {not_equal} exp not_equal comparators | {equal_to} exp equal_to comparators | {next} comparators;
+	  // > < >= <=
+	  comparators = {greater_than} [one]:math1 greater_than [two]:math1 | {less_than} [one]:math1 less_than [two]:math1 | {greater_equal} [one]:math1 greater_equal [two]:math1 | {less_equal} [one]:math1 less_equal [two]:math1 | {next} math1;
+	  // - +
+	  math1 = {subtract} math1 minus math2 | {add} math1 plus math2 | {next} math2;
+	  // * %
+	  math2 = {divide} math2 divide end_exp | {multiply} math2 multiply end_exp | {next} end_exp;
+	  // end
+	  end_exp = {call_top} open_parenthesis exp close_parenthesis | {end} number;
+
+
+	  // number definitions, everthing that could possibly be a number
+	  number = {int} int | {float} float | {id} id | {array} id open_bracket exp close_bracket;

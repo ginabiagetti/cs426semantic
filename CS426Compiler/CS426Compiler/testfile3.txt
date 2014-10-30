@@ -1,0 +1,3 @@
+public void main() {
+	con int x = 2
+}
