@@ -92,7 +92,7 @@ Productions
 	  //methods
 	  methods = {multiple} methods method_header open_brace list close_brace | {nothing};
 
-	  method_header = {right} public [void]:id [name]:id open_parenthesis formal_parameters close_parenthesis | {left} public [void]:id [name]:id open_parenthesis close_parenthesis;
+	  method_header = {full} public [void]:id [name]:id open_parenthesis formal_parameters close_parenthesis | {empty} public [void]:id [name]:id open_parenthesis close_parenthesis;
 
 	 
 	  // main method
