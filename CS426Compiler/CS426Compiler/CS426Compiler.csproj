@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="analysis.cs" />
+    <Compile Include="Definition.cs" />
     <Compile Include="lexer.cs" />
     <Compile Include="nodes.cs" />
     <Compile Include="parser.cs" />
     <Compile Include="prods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rathbone_parser.cs" />
+    <Compile Include="rathbone_semantic.cs" />
+    <Compile Include="SemanticAnalyzer.cs" />
     <Compile Include="tokens.cs" />
   </ItemGroup>
   <ItemGroup>
