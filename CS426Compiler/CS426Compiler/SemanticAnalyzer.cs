@@ -55,7 +55,28 @@ namespace CS426Compiler
         }
         public override void OutAArrayDeclare(comp5210.node.AArrayDeclare node)
         {
-            base.OutAArrayDeclare(node);
+            string type = node.GetType().Text;
+            string name = node.GetName().Text;
+            Definition typedefn;
+            if (!stringhash.TryGetValue(name, out typedefn))
+            {
+                Console..WriteLine("[" + node.GetName().Line + "]: " + name + " is not defined");
+            }
+            else if (!(typedefn is TypeDefinition))
+            {
+                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    name + " is an invalid type.");
+            }
+            else
+            {
+                // add this variable to the hash table
+                // note you need to add checks to make sure this 
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = name;
+                vardefn.vartype = typedefn as TypeDefinition;
+                stringhash.Add(vardefn.name, vardefn);
+            }
         }
         public override void OutAMoreFormalParameters(comp5210.node.AMoreFormalParameters node)
         {
@@ -73,6 +94,8 @@ namespace CS426Compiler
         {
             base.OutALastActualParameters(node);
         }
+       
+        
         public override void OutAStartExp(comp5210.node.AStartExp node)
         {
             base.OutAStartExp(node);
@@ -93,6 +116,8 @@ namespace CS426Compiler
         {
             base.OutANextExp(node);
         }
+        
+        
         public override void OutAGreaterThanComparators(comp5210.node.AGreaterThanComparators node)
         {
             base.OutAGreaterThanComparators(node);
@@ -113,6 +138,8 @@ namespace CS426Compiler
         {
             base.OutANextComparators(node);
         }
+        
+        
         public override void OutASubtractMath1(comp5210.node.ASubtractMath1 node)
         {
             base.OutASubtractMath1(node);
@@ -125,6 +152,8 @@ namespace CS426Compiler
         {
             base.OutANextMath1(node);
         }
+        
+        
         public override void OutADivideMath2(comp5210.node.ADivideMath2 node)
         {
             base.OutADivideMath2(node);
@@ -137,6 +166,8 @@ namespace CS426Compiler
         {
             base.OutANextMath2(node);
         }
+
+
         public override void OutACallTopEndExp(comp5210.node.ACallTopEndExp node)
         {
             base.OutACallTopEndExp(node);
@@ -145,7 +176,8 @@ namespace CS426Compiler
         {
             base.OutAEndEndExp(node);
         }
-
+       
+        
         public override void OutAIntNumber(comp5210.node.AIntNumber node)
         {
             base.OutAIntNumber(node);
