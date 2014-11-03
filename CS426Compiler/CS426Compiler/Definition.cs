@@ -9,7 +9,6 @@ namespace CS426Compiler
     public abstract class Definition
     {
         public string name;
-        //hi test
     }
     public abstract class TypeDefinition : Definition
     {
