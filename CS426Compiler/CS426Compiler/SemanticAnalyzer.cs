@@ -33,10 +33,38 @@ namespace CS426Compiler
         {
             base.OutAFloatDelcareConstantDeclare(node);
         }
+        public override void InAVarDeclare(comp5210.node.AVarDeclare node)
+        {
+            base.InAVarDeclare(node);
+        }
         public override void OutAVarDeclare(comp5210.node.AVarDeclare node)
         {
-            base.OutAVarDeclare(node);
-        }
+            string type = node.GetType().Text;
+            string name = node.GetName().Text;
+            Definition typedefn;
+            // lookup the type
+            if (!stringhash.TryGetValue(type, out typedefn))
+            {
+                Console.WriteLine("[" + node.GetType().Line + "]: " +
+                    type + " is not defined.");
+            }
+            // check to make sure what we got back is a type
+            else if (!(typedefn is TypeDefinition))
+            {
+                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    type + " is an invalid type.");
+            }
+            else
+            {
+                // add this variable to the hash table
+                // note you need to add checks to make sure this 
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = name;
+                vardefn.vartype = typedefn as TypeDefinition;
+                stringhash.Add(vardefn.name, vardefn);
+            }
+       }
         public override void OutAIfStatement(comp5210.node.AIfStatement node)
         {
             base.OutAIfStatement(node);
@@ -55,28 +83,7 @@ namespace CS426Compiler
         }
         public override void OutAArrayDeclare(comp5210.node.AArrayDeclare node)
         {
-            string type = node.GetType().Text;
-            string name = node.GetName().Text;
-            Definition typedefn;
-            if (!stringhash.TryGetValue(name, out typedefn))
-            {
-                Console..WriteLine("[" + node.GetName().Line + "]: " + name + " is not defined");
-            }
-            else if (!(typedefn is TypeDefinition))
-            {
-                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
-                    name + " is an invalid type.");
-            }
-            else
-            {
-                // add this variable to the hash table
-                // note you need to add checks to make sure this 
-                // variable name isn't already defined.
-                VariableDefinition vardefn = new VariableDefinition();
-                vardefn.name = name;
-                vardefn.vartype = typedefn as TypeDefinition;
-                stringhash.Add(vardefn.name, vardefn);
-            }
+            base.OutAArrayDeclare(node);
         }
         public override void OutAMoreFormalParameters(comp5210.node.AMoreFormalParameters node)
         {

@@ -1,41 +1,7 @@
-con int t = 4;
-con float u = 2;
+public void main(){
+ 
+	int x;
+	blue x;
+	x y;
 
-public void method2(){}
-
-public void method(int x, float z){
-	int y;
-	y = x + z;
-}
-
-public void main() {
-	int w;
-	con int x = 8;
-	con float y = 9.7;
-
-	int array1 [15];
-
-	y = array2 [x+3];
-	x = array3 [3];
-
-	array1 [1] = 23;
-	array1 [x] = w + 4;
-
-	while((x == 8) && (y > array[x])){
-		if ( x == 21){
-			x = x * 2 + 1; 
-		}
-		w = x;
-	}
-
-	con int z = 72;
-	
-	if((x + 9) != 48){
-		while ( y > 9 ) {
-			x = x + 2 - 1;
-		}
-	}
-
-	method (x , 3);
-	print ( "text" );
 }

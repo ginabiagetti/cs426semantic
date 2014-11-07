@@ -137,6 +137,6 @@ class TestParser
     //if ( args.Length > 0 && args[0] == "-ansi" )
       //  printer.SetColor(true);
 
-    //s.Apply(printer);
+    s.Apply(sa);
   }
 }
