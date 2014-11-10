@@ -680,7 +680,7 @@ public sealed class ANothingMethods : PMethods
     }
 
 }
-public sealed class ARightMethodHeader : PMethodHeader
+public sealed class AFullMethodHeader : PMethodHeader
 {
     private TPublic _public_;
     private TId _void_;
@@ -689,11 +689,11 @@ public sealed class ARightMethodHeader : PMethodHeader
     private PFormalParameters _formal_parameters_;
     private TCloseParenthesis _close_parenthesis_;
 
-    public ARightMethodHeader ()
+    public AFullMethodHeader ()
     {
     }
 
-    public ARightMethodHeader (
+    public AFullMethodHeader (
             TPublic _public_,
             TId _void_,
             TId _name_,
@@ -712,7 +712,7 @@ public sealed class ARightMethodHeader : PMethodHeader
 
     public override Object Clone()
     {
-        return new ARightMethodHeader (
+        return new AFullMethodHeader (
             (TPublic)CloneNode (_public_),
             (TId)CloneNode (_void_),
             (TId)CloneNode (_name_),
@@ -724,7 +724,7 @@ public sealed class ARightMethodHeader : PMethodHeader
 
     public override void Apply(Switch sw)
     {
-        ((Analysis) sw).CaseARightMethodHeader(this);
+        ((Analysis) sw).CaseAFullMethodHeader(this);
     }
 
     public TPublic GetPublic ()
@@ -953,7 +953,7 @@ public sealed class ARightMethodHeader : PMethodHeader
     }
 
 }
-public sealed class ALeftMethodHeader : PMethodHeader
+public sealed class AEmptyMethodHeader : PMethodHeader
 {
     private TPublic _public_;
     private TId _void_;
@@ -961,11 +961,11 @@ public sealed class ALeftMethodHeader : PMethodHeader
     private TOpenParenthesis _open_parenthesis_;
     private TCloseParenthesis _close_parenthesis_;
 
-    public ALeftMethodHeader ()
+    public AEmptyMethodHeader ()
     {
     }
 
-    public ALeftMethodHeader (
+    public AEmptyMethodHeader (
             TPublic _public_,
             TId _void_,
             TId _name_,
@@ -982,7 +982,7 @@ public sealed class ALeftMethodHeader : PMethodHeader
 
     public override Object Clone()
     {
-        return new ALeftMethodHeader (
+        return new AEmptyMethodHeader (
             (TPublic)CloneNode (_public_),
             (TId)CloneNode (_void_),
             (TId)CloneNode (_name_),
@@ -993,7 +993,7 @@ public sealed class ALeftMethodHeader : PMethodHeader
 
     public override void Apply(Switch sw)
     {
-        ((Analysis) sw).CaseALeftMethodHeader(this);
+        ((Analysis) sw).CaseAEmptyMethodHeader(this);
     }
 
     public TPublic GetPublic ()
@@ -2904,8 +2904,8 @@ public sealed class AMoreFormalParameters : PFormalParameters
 {
     private PFormalParameters _formal_parameters_;
     private TComma _comma_;
-    private TId _id_;
-    private PExp _exp_;
+    private TId _type_;
+    private TId _name_;
 
     public AMoreFormalParameters ()
     {
@@ -2914,14 +2914,14 @@ public sealed class AMoreFormalParameters : PFormalParameters
     public AMoreFormalParameters (
             PFormalParameters _formal_parameters_,
             TComma _comma_,
-            TId _id_,
-            PExp _exp_
+            TId _type_,
+            TId _name_
     )
     {
         SetFormalParameters (_formal_parameters_);
         SetComma (_comma_);
-        SetId (_id_);
-        SetExp (_exp_);
+        SetType (_type_);
+        SetName (_name_);
     }
 
     public override Object Clone()
@@ -2929,8 +2929,8 @@ public sealed class AMoreFormalParameters : PFormalParameters
         return new AMoreFormalParameters (
             (PFormalParameters)CloneNode (_formal_parameters_),
             (TComma)CloneNode (_comma_),
-            (TId)CloneNode (_id_),
-            (PExp)CloneNode (_exp_)
+            (TId)CloneNode (_type_),
+            (TId)CloneNode (_name_)
         );
     }
 
@@ -2987,16 +2987,16 @@ public sealed class AMoreFormalParameters : PFormalParameters
 
         _comma_ = node;
     }
-    public TId GetId ()
+    public TId GetType ()
     {
-        return _id_;
+        return _type_;
     }
 
-    public void SetId (TId node)
+    public void SetType (TId node)
     {
-        if(_id_ != null)
+        if(_type_ != null)
         {
-            _id_.Parent(null);
+            _type_.Parent(null);
         }
 
         if(node != null)
@@ -3009,18 +3009,18 @@ public sealed class AMoreFormalParameters : PFormalParameters
             node.Parent(this);
         }
 
-        _id_ = node;
+        _type_ = node;
     }
-    public PExp GetExp ()
+    public TId GetName ()
     {
-        return _exp_;
+        return _name_;
     }
 
-    public void SetExp (PExp node)
+    public void SetName (TId node)
     {
-        if(_exp_ != null)
+        if(_name_ != null)
         {
-            _exp_.Parent(null);
+            _name_.Parent(null);
         }
 
         if(node != null)
@@ -3033,7 +3033,7 @@ public sealed class AMoreFormalParameters : PFormalParameters
             node.Parent(this);
         }
 
-        _exp_ = node;
+        _name_ = node;
     }
 
     public override string ToString()
@@ -3041,8 +3041,8 @@ public sealed class AMoreFormalParameters : PFormalParameters
         return ""
             + ToString (_formal_parameters_)
             + ToString (_comma_)
-            + ToString (_id_)
-            + ToString (_exp_)
+            + ToString (_type_)
+            + ToString (_name_)
         ;
     }
 
@@ -3058,14 +3058,14 @@ public sealed class AMoreFormalParameters : PFormalParameters
             _comma_ = null;
             return;
         }
-        if ( _id_ == child )
+        if ( _type_ == child )
         {
-            _id_ = null;
+            _type_ = null;
             return;
         }
-        if ( _exp_ == child )
+        if ( _name_ == child )
         {
-            _exp_ = null;
+            _name_ = null;
             return;
         }
     }
@@ -3082,14 +3082,14 @@ public sealed class AMoreFormalParameters : PFormalParameters
             SetComma ((TComma) newChild);
             return;
         }
-        if ( _id_ == oldChild )
+        if ( _type_ == oldChild )
         {
-            SetId ((TId) newChild);
+            SetType ((TId) newChild);
             return;
         }
-        if ( _exp_ == oldChild )
+        if ( _name_ == oldChild )
         {
-            SetExp ((PExp) newChild);
+            SetName ((TId) newChild);
             return;
         }
     }
@@ -3097,27 +3097,27 @@ public sealed class AMoreFormalParameters : PFormalParameters
 }
 public sealed class ALastFormalParameters : PFormalParameters
 {
-    private TId _id_;
-    private PExp _exp_;
+    private TId _type_;
+    private TId _name_;
 
     public ALastFormalParameters ()
     {
     }
 
     public ALastFormalParameters (
-            TId _id_,
-            PExp _exp_
+            TId _type_,
+            TId _name_
     )
     {
-        SetId (_id_);
-        SetExp (_exp_);
+        SetType (_type_);
+        SetName (_name_);
     }
 
     public override Object Clone()
     {
         return new ALastFormalParameters (
-            (TId)CloneNode (_id_),
-            (PExp)CloneNode (_exp_)
+            (TId)CloneNode (_type_),
+            (TId)CloneNode (_name_)
         );
     }
 
@@ -3126,16 +3126,16 @@ public sealed class ALastFormalParameters : PFormalParameters
         ((Analysis) sw).CaseALastFormalParameters(this);
     }
 
-    public TId GetId ()
+    public TId GetType ()
     {
-        return _id_;
+        return _type_;
     }
 
-    public void SetId (TId node)
+    public void SetType (TId node)
     {
-        if(_id_ != null)
+        if(_type_ != null)
         {
-            _id_.Parent(null);
+            _type_.Parent(null);
         }
 
         if(node != null)
@@ -3148,18 +3148,18 @@ public sealed class ALastFormalParameters : PFormalParameters
             node.Parent(this);
         }
 
-        _id_ = node;
+        _type_ = node;
     }
-    public PExp GetExp ()
+    public TId GetName ()
     {
-        return _exp_;
+        return _name_;
     }
 
-    public void SetExp (PExp node)
+    public void SetName (TId node)
     {
-        if(_exp_ != null)
+        if(_name_ != null)
         {
-            _exp_.Parent(null);
+            _name_.Parent(null);
         }
 
         if(node != null)
@@ -3172,41 +3172,41 @@ public sealed class ALastFormalParameters : PFormalParameters
             node.Parent(this);
         }
 
-        _exp_ = node;
+        _name_ = node;
     }
 
     public override string ToString()
     {
         return ""
-            + ToString (_id_)
-            + ToString (_exp_)
+            + ToString (_type_)
+            + ToString (_name_)
         ;
     }
 
     internal override void RemoveChild(Node child)
     {
-        if ( _id_ == child )
+        if ( _type_ == child )
         {
-            _id_ = null;
+            _type_ = null;
             return;
         }
-        if ( _exp_ == child )
+        if ( _name_ == child )
         {
-            _exp_ = null;
+            _name_ = null;
             return;
         }
     }
 
     internal override void ReplaceChild(Node oldChild, Node newChild)
     {
-        if ( _id_ == oldChild )
+        if ( _type_ == oldChild )
         {
-            SetId ((TId) newChild);
+            SetType ((TId) newChild);
             return;
         }
-        if ( _exp_ == oldChild )
+        if ( _name_ == oldChild )
         {
-            SetExp ((PExp) newChild);
+            SetName ((TId) newChild);
             return;
         }
     }
@@ -4309,7 +4309,7 @@ public sealed class AArrayDeclare : PArrayDeclare
     private TId _type_;
     private TId _name_;
     private TOpenBracket _open_bracket_;
-    private PNumber _number_;
+    private TInt _int_;
     private TCloseBracket _close_bracket_;
     private TSemicolon _semicolon_;
 
@@ -4321,7 +4321,7 @@ public sealed class AArrayDeclare : PArrayDeclare
             TId _type_,
             TId _name_,
             TOpenBracket _open_bracket_,
-            PNumber _number_,
+            TInt _int_,
             TCloseBracket _close_bracket_,
             TSemicolon _semicolon_
     )
@@ -4329,7 +4329,7 @@ public sealed class AArrayDeclare : PArrayDeclare
         SetType (_type_);
         SetName (_name_);
         SetOpenBracket (_open_bracket_);
-        SetNumber (_number_);
+        SetInt (_int_);
         SetCloseBracket (_close_bracket_);
         SetSemicolon (_semicolon_);
     }
@@ -4340,7 +4340,7 @@ public sealed class AArrayDeclare : PArrayDeclare
             (TId)CloneNode (_type_),
             (TId)CloneNode (_name_),
             (TOpenBracket)CloneNode (_open_bracket_),
-            (PNumber)CloneNode (_number_),
+            (TInt)CloneNode (_int_),
             (TCloseBracket)CloneNode (_close_bracket_),
             (TSemicolon)CloneNode (_semicolon_)
         );
@@ -4423,16 +4423,16 @@ public sealed class AArrayDeclare : PArrayDeclare
 
         _open_bracket_ = node;
     }
-    public PNumber GetNumber ()
+    public TInt GetInt ()
     {
-        return _number_;
+        return _int_;
     }
 
-    public void SetNumber (PNumber node)
+    public void SetInt (TInt node)
     {
-        if(_number_ != null)
+        if(_int_ != null)
         {
-            _number_.Parent(null);
+            _int_.Parent(null);
         }
 
         if(node != null)
@@ -4445,7 +4445,7 @@ public sealed class AArrayDeclare : PArrayDeclare
             node.Parent(this);
         }
 
-        _number_ = node;
+        _int_ = node;
     }
     public TCloseBracket GetCloseBracket ()
     {
@@ -4502,7 +4502,7 @@ public sealed class AArrayDeclare : PArrayDeclare
             + ToString (_type_)
             + ToString (_name_)
             + ToString (_open_bracket_)
-            + ToString (_number_)
+            + ToString (_int_)
             + ToString (_close_bracket_)
             + ToString (_semicolon_)
         ;
@@ -4525,9 +4525,9 @@ public sealed class AArrayDeclare : PArrayDeclare
             _open_bracket_ = null;
             return;
         }
-        if ( _number_ == child )
+        if ( _int_ == child )
         {
-            _number_ = null;
+            _int_ = null;
             return;
         }
         if ( _close_bracket_ == child )
@@ -4559,9 +4559,9 @@ public sealed class AArrayDeclare : PArrayDeclare
             SetOpenBracket ((TOpenBracket) newChild);
             return;
         }
-        if ( _number_ == oldChild )
+        if ( _int_ == oldChild )
         {
-            SetNumber ((PNumber) newChild);
+            SetInt ((TInt) newChild);
             return;
         }
         if ( _close_bracket_ == oldChild )

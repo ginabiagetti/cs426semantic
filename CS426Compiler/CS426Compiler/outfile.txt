@@ -1,2 +1,6 @@
-[4]: blue is not defined.
-[5]: x is an invalid type.
+Program Complete : Some errors 
+added x of type int to the stringhash
+added w of type int to the stringhash
+[6]: w has already been declared.
+[7]: blue is not defined.
+Program Complete : No errors 

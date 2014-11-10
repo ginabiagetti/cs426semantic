@@ -122,7 +122,7 @@ Productions
 	  constant_declare = {int_declare} con [type]:id [name]:id equals int semicolon | {float_delcare} con [type]:id [name]:id equals float semicolon;
 
 	  // array declaration
-	  array_declare = [type]:id [name]:id open_bracket number close_bracket semicolon;
+	  array_declare = [type]:id [name]:id open_bracket int close_bracket semicolon;
 
 	  
 	  // if statements

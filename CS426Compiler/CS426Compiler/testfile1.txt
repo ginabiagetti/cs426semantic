@@ -1,7 +1,8 @@
-public void main(){
- 
-	int x;
-	blue x;
-	x y;
+con int x = 4;
 
+
+public void main(){
+	int w[10];
+	int w[2];
+	blue y[1];
 }

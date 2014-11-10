@@ -26,15 +26,84 @@ namespace CS426Compiler
 
         public override void OutAIntDeclareConstantDeclare(comp5210.node.AIntDeclareConstantDeclare node)
         {
+            string type = node.GetType().Text;
+            string name = node.GetName().Text;
+             Definition typedefn;
+            // lookup the type
+            if (!stringhash.TryGetValue(type, out typedefn))
+            {
+                Console.WriteLine("[" + node.GetType().Line + "]: " +
+                    type + " is not defined.");
+            }
+            // check to make sure the type is an int
+            else if (type != "int")
+            {
+                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    "Type mismatch, should be an int");
+            }
+            else
+            {
+                // add this variable to the hash table if
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = name;
+                vardefn.vartype = typedefn as TypeDefinition;
+                if (stringhash.ContainsKey(name))
+                {//if the string is already in the stringhash, don't add it and return an error
+                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    name + " has already been declared.");
+                }
+                else
+                {//if not, then add it to the hash!
+                    stringhash.Add(vardefn.name, vardefn);
+                    Console.WriteLine("added " + name + " of type " + type + " to the stringhash");
+                }
+
+            }
             base.OutAIntDeclareConstantDeclare(node);
         }
       
         public override void OutAFloatDelcareConstantDeclare(comp5210.node.AFloatDelcareConstantDeclare node)
         {
+            string type = node.GetType().Text;
+            string name = node.GetName().Text;
+            Definition typedefn;
+            // lookup the type
+            if (!stringhash.TryGetValue(type, out typedefn))
+            {
+                Console.WriteLine("[" + node.GetType().Line + "]: " +
+                    type + " is not defined.");
+            }
+            // check to make sure the type is an int
+            else if (type != "float")
+            {
+                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    "Type mismatch, should be an float");
+            }
+            else
+            {
+                // add this variable to the hash table if
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = name;
+                vardefn.vartype = typedefn as TypeDefinition;
+                if (stringhash.ContainsKey(name))
+                {//if the string is already in the stringhash, don't add it and return an error
+                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    name + " has already been declared.");
+                }
+                else
+                {//if not, then add it to the hash!
+                    stringhash.Add(vardefn.name, vardefn);
+                    Console.WriteLine("added " + name + " of type " + type + " to the stringhash");
+                }
+                
+            }
             base.OutAFloatDelcareConstantDeclare(node);
         }
         public override void InAVarDeclare(comp5210.node.AVarDeclare node)
         {
+           
             base.InAVarDeclare(node);
         }
         public override void OutAVarDeclare(comp5210.node.AVarDeclare node)
@@ -56,13 +125,19 @@ namespace CS426Compiler
             }
             else
             {
-                // add this variable to the hash table
-                // note you need to add checks to make sure this 
+                // add this variable to the hash table if
                 // variable name isn't already defined.
                 VariableDefinition vardefn = new VariableDefinition();
                 vardefn.name = name;
                 vardefn.vartype = typedefn as TypeDefinition;
-                stringhash.Add(vardefn.name, vardefn);
+                if (stringhash.ContainsKey(name)){//if the string is already in the stringhash, don't add it and return an error
+                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    name + " has already been declared.");
+                }else{//if not, then add it to the hash!
+                    stringhash.Add(vardefn.name, vardefn);
+                    Console.WriteLine("added " + name + " of type " +type+ " to the stringhash");
+                }
+                
             }
        }
         public override void OutAIfStatement(comp5210.node.AIfStatement node)
@@ -73,8 +148,33 @@ namespace CS426Compiler
         {
             base.OutAWhileLoop(node);
         }
+
+
         public override void OutAExpressionAssignStatement(comp5210.node.AExpressionAssignStatement node)
         {
+            
+            string id = node.GetId().Text;
+            Definition typedefn;
+            // lookup the type
+           
+                // add this variable to the hash table if
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = id;
+                vardefn.vartype = typedefn as TypeDefinition;
+                if (stringhash.ContainsKey(id))
+                {//if the string is already in the stringhash, we're good
+                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    id + " has already been declared.");
+                }
+                else
+                {//if not, error
+                    stringhash.Add(vardefn.name, vardefn);
+                    Console.WriteLine("added " + id + " of type " + id + " to the stringhash");
+                
+
+                }
+
             base.OutAExpressionAssignStatement(node);
         }
         public override void OutAArrayAssignStatement(comp5210.node.AArrayAssignStatement node)
@@ -83,6 +183,40 @@ namespace CS426Compiler
         }
         public override void OutAArrayDeclare(comp5210.node.AArrayDeclare node)
         {
+            string type = node.GetType().Text;
+            string name = node.GetName().Text;
+            Definition typedefn;
+            // lookup the type
+            if (!stringhash.TryGetValue(type, out typedefn))
+            {
+                Console.WriteLine("[" + node.GetType().Line + "]: " +
+                    type + " is not defined.");
+            }
+            // check to make sure what we got back is a type
+            else if (!(typedefn is TypeDefinition))
+            {
+                Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    type + " is an invalid type.");
+            }
+            else
+            {
+                // add this variable to the hash table if
+                // variable name isn't already defined.
+                VariableDefinition vardefn = new VariableDefinition();
+                vardefn.name = name;
+                vardefn.vartype = typedefn as TypeDefinition;
+                if (stringhash.ContainsKey(name))
+                {//if the string is already in the stringhash, don't add it and return an error
+                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
+                    name + " has already been declared.");
+                }
+                else
+                {//if not, then add it to the hash!
+                    stringhash.Add(vardefn.name, vardefn);
+                    Console.WriteLine("added " + name + " of type " + type + " to the stringhash");
+                }
+
+            }
             base.OutAArrayDeclare(node);
         }
         public override void OutAMoreFormalParameters(comp5210.node.AMoreFormalParameters node)

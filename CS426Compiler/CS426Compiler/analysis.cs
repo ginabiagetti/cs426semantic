@@ -20,8 +20,8 @@ public interface Analysis : Switch
     void CaseANothingConstants(ANothingConstants node);
     void CaseAMultipleMethods(AMultipleMethods node);
     void CaseANothingMethods(ANothingMethods node);
-    void CaseARightMethodHeader(ARightMethodHeader node);
-    void CaseALeftMethodHeader(ALeftMethodHeader node);
+    void CaseAFullMethodHeader(AFullMethodHeader node);
+    void CaseAEmptyMethodHeader(AEmptyMethodHeader node);
     void CaseAMainMethod(AMainMethod node);
     void CaseAMainHeader(AMainHeader node);
     void CaseAVarDeclareList(AVarDeclareList node);
@@ -194,11 +194,11 @@ public class AnalysisAdapter : Analysis
     {
         DefaultCase(node);
     }
-    public virtual void CaseARightMethodHeader(ARightMethodHeader node)
+    public virtual void CaseAFullMethodHeader(AFullMethodHeader node)
     {
         DefaultCase(node);
     }
-    public virtual void CaseALeftMethodHeader(ALeftMethodHeader node)
+    public virtual void CaseAEmptyMethodHeader(AEmptyMethodHeader node)
     {
         DefaultCase(node);
     }
@@ -698,19 +698,19 @@ public class DepthFirstAdapter : AnalysisAdapter
         InANothingMethods(node);
         OutANothingMethods(node);
     }
-    public virtual void InARightMethodHeader(ARightMethodHeader node)
+    public virtual void InAFullMethodHeader(AFullMethodHeader node)
     {
         DefaultIn(node);
     }
 
-    public virtual void OutARightMethodHeader(ARightMethodHeader node)
+    public virtual void OutAFullMethodHeader(AFullMethodHeader node)
     {
         DefaultOut(node);
     }
 
-    public override void CaseARightMethodHeader(ARightMethodHeader node)
+    public override void CaseAFullMethodHeader(AFullMethodHeader node)
     {
-        InARightMethodHeader(node);
+        InAFullMethodHeader(node);
         if(node.GetPublic() != null)
         {
             node.GetPublic().Apply(this);
@@ -735,21 +735,21 @@ public class DepthFirstAdapter : AnalysisAdapter
         {
             node.GetCloseParenthesis().Apply(this);
         }
-        OutARightMethodHeader(node);
+        OutAFullMethodHeader(node);
     }
-    public virtual void InALeftMethodHeader(ALeftMethodHeader node)
+    public virtual void InAEmptyMethodHeader(AEmptyMethodHeader node)
     {
         DefaultIn(node);
     }
 
-    public virtual void OutALeftMethodHeader(ALeftMethodHeader node)
+    public virtual void OutAEmptyMethodHeader(AEmptyMethodHeader node)
     {
         DefaultOut(node);
     }
 
-    public override void CaseALeftMethodHeader(ALeftMethodHeader node)
+    public override void CaseAEmptyMethodHeader(AEmptyMethodHeader node)
     {
-        InALeftMethodHeader(node);
+        InAEmptyMethodHeader(node);
         if(node.GetPublic() != null)
         {
             node.GetPublic().Apply(this);
@@ -770,7 +770,7 @@ public class DepthFirstAdapter : AnalysisAdapter
         {
             node.GetCloseParenthesis().Apply(this);
         }
-        OutALeftMethodHeader(node);
+        OutAEmptyMethodHeader(node);
     }
     public virtual void InAMainMethod(AMainMethod node)
     {
@@ -1101,13 +1101,13 @@ public class DepthFirstAdapter : AnalysisAdapter
         {
             node.GetComma().Apply(this);
         }
-        if(node.GetId() != null)
+        if(node.GetType() != null)
         {
-            node.GetId().Apply(this);
+            node.GetType().Apply(this);
         }
-        if(node.GetExp() != null)
+        if(node.GetName() != null)
         {
-            node.GetExp().Apply(this);
+            node.GetName().Apply(this);
         }
         OutAMoreFormalParameters(node);
     }
@@ -1124,13 +1124,13 @@ public class DepthFirstAdapter : AnalysisAdapter
     public override void CaseALastFormalParameters(ALastFormalParameters node)
     {
         InALastFormalParameters(node);
-        if(node.GetId() != null)
+        if(node.GetType() != null)
         {
-            node.GetId().Apply(this);
+            node.GetType().Apply(this);
         }
-        if(node.GetExp() != null)
+        if(node.GetName() != null)
         {
-            node.GetExp().Apply(this);
+            node.GetName().Apply(this);
         }
         OutALastFormalParameters(node);
     }
@@ -1348,9 +1348,9 @@ public class DepthFirstAdapter : AnalysisAdapter
         {
             node.GetOpenBracket().Apply(this);
         }
-        if(node.GetNumber() != null)
+        if(node.GetInt() != null)
         {
-            node.GetNumber().Apply(this);
+            node.GetInt().Apply(this);
         }
         if(node.GetCloseBracket() != null)
         {
@@ -2202,19 +2202,19 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
         InANothingMethods(node);
         OutANothingMethods(node);
     }
-    public virtual void InARightMethodHeader(ARightMethodHeader node)
+    public virtual void InAFullMethodHeader(AFullMethodHeader node)
     {
         DefaultIn(node);
     }
 
-    public virtual void OutARightMethodHeader(ARightMethodHeader node)
+    public virtual void OutAFullMethodHeader(AFullMethodHeader node)
     {
         DefaultOut(node);
     }
 
-    public override void CaseARightMethodHeader(ARightMethodHeader node)
+    public override void CaseAFullMethodHeader(AFullMethodHeader node)
     {
-        InARightMethodHeader(node);
+        InAFullMethodHeader(node);
         if(node.GetCloseParenthesis() != null)
         {
             node.GetCloseParenthesis().Apply(this);
@@ -2239,21 +2239,21 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
         {
             node.GetPublic().Apply(this);
         }
-        OutARightMethodHeader(node);
+        OutAFullMethodHeader(node);
     }
-    public virtual void InALeftMethodHeader(ALeftMethodHeader node)
+    public virtual void InAEmptyMethodHeader(AEmptyMethodHeader node)
     {
         DefaultIn(node);
     }
 
-    public virtual void OutALeftMethodHeader(ALeftMethodHeader node)
+    public virtual void OutAEmptyMethodHeader(AEmptyMethodHeader node)
     {
         DefaultOut(node);
     }
 
-    public override void CaseALeftMethodHeader(ALeftMethodHeader node)
+    public override void CaseAEmptyMethodHeader(AEmptyMethodHeader node)
     {
-        InALeftMethodHeader(node);
+        InAEmptyMethodHeader(node);
         if(node.GetCloseParenthesis() != null)
         {
             node.GetCloseParenthesis().Apply(this);
@@ -2274,7 +2274,7 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
         {
             node.GetPublic().Apply(this);
         }
-        OutALeftMethodHeader(node);
+        OutAEmptyMethodHeader(node);
     }
     public virtual void InAMainMethod(AMainMethod node)
     {
@@ -2597,13 +2597,13 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
     public override void CaseAMoreFormalParameters(AMoreFormalParameters node)
     {
         InAMoreFormalParameters(node);
-        if(node.GetExp() != null)
+        if(node.GetName() != null)
         {
-            node.GetExp().Apply(this);
+            node.GetName().Apply(this);
         }
-        if(node.GetId() != null)
+        if(node.GetType() != null)
         {
-            node.GetId().Apply(this);
+            node.GetType().Apply(this);
         }
         if(node.GetComma() != null)
         {
@@ -2628,13 +2628,13 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
     public override void CaseALastFormalParameters(ALastFormalParameters node)
     {
         InALastFormalParameters(node);
-        if(node.GetExp() != null)
+        if(node.GetName() != null)
         {
-            node.GetExp().Apply(this);
+            node.GetName().Apply(this);
         }
-        if(node.GetId() != null)
+        if(node.GetType() != null)
         {
-            node.GetId().Apply(this);
+            node.GetType().Apply(this);
         }
         OutALastFormalParameters(node);
     }
@@ -2848,9 +2848,9 @@ public class ReversedDepthFirstAdapter : AnalysisAdapter
         {
             node.GetCloseBracket().Apply(this);
         }
-        if(node.GetNumber() != null)
+        if(node.GetInt() != null)
         {
-            node.GetNumber().Apply(this);
+            node.GetInt().Apply(this);
         }
         if(node.GetOpenBracket() != null)
         {

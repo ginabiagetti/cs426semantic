@@ -804,7 +804,7 @@ public class Parser
         TOpenParenthesis topenparenthesisNode5 = (TOpenParenthesis)nodeArrayList4[0];
         PFormalParameters pformalparametersNode6 = (PFormalParameters)nodeArrayList5[0];
         TCloseParenthesis tcloseparenthesisNode7 = (TCloseParenthesis)nodeArrayList6[0];
-        ARightMethodHeader pmethodheaderNode1 = new ARightMethodHeader (
+        AFullMethodHeader pmethodheaderNode1 = new AFullMethodHeader (
               tpublicNode2,
               tidNode3,
               tidNode4,
@@ -828,7 +828,7 @@ public class Parser
         TId tidNode4 = (TId)nodeArrayList3[0];
         TOpenParenthesis topenparenthesisNode5 = (TOpenParenthesis)nodeArrayList4[0];
         TCloseParenthesis tcloseparenthesisNode6 = (TCloseParenthesis)nodeArrayList5[0];
-        ALeftMethodHeader pmethodheaderNode1 = new ALeftMethodHeader (
+        AEmptyMethodHeader pmethodheaderNode1 = new AEmptyMethodHeader (
               tpublicNode2,
               tidNode3,
               tidNode4,
@@ -1040,12 +1040,12 @@ public class Parser
         PFormalParameters pformalparametersNode2 = (PFormalParameters)nodeArrayList1[0];
         TComma tcommaNode3 = (TComma)nodeArrayList2[0];
         TId tidNode4 = (TId)nodeArrayList3[0];
-        PExp pexpNode5 = (PExp)nodeArrayList4[0];
+        TId tidNode5 = (TId)nodeArrayList4[0];
         AMoreFormalParameters pformalparametersNode1 = new AMoreFormalParameters (
               pformalparametersNode2,
               tcommaNode3,
               tidNode4,
-              pexpNode5
+              tidNode5
         );
         nodeList.Add(pformalparametersNode1);
         return nodeList;
@@ -1056,10 +1056,10 @@ public class Parser
         ArrayList nodeArrayList2 = (ArrayList) Pop();
         ArrayList nodeArrayList1 = (ArrayList) Pop();
         TId tidNode2 = (TId)nodeArrayList1[0];
-        PExp pexpNode3 = (PExp)nodeArrayList2[0];
+        TId tidNode3 = (TId)nodeArrayList2[0];
         ALastFormalParameters pformalparametersNode1 = new ALastFormalParameters (
               tidNode2,
-              pexpNode3
+              tidNode3
         );
         nodeList.Add(pformalparametersNode1);
         return nodeList;
@@ -1195,14 +1195,14 @@ public class Parser
         TId tidNode2 = (TId)nodeArrayList1[0];
         TId tidNode3 = (TId)nodeArrayList2[0];
         TOpenBracket topenbracketNode4 = (TOpenBracket)nodeArrayList3[0];
-        PNumber pnumberNode5 = (PNumber)nodeArrayList4[0];
+        TInt tintNode5 = (TInt)nodeArrayList4[0];
         TCloseBracket tclosebracketNode6 = (TCloseBracket)nodeArrayList5[0];
         TSemicolon tsemicolonNode7 = (TSemicolon)nodeArrayList6[0];
         AArrayDeclare parraydeclareNode1 = new AArrayDeclare (
               tidNode2,
               tidNode3,
               topenbracketNode4,
-              pnumberNode5,
+              tintNode5,
               tclosebracketNode6,
               tsemicolonNode7
         );
@@ -1897,10 +1897,7 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 3, 53},
-        new int[] {26, 0, 56},
-        new int[] {27, 0, 57},
-        new int[] {28, 0, 58},
-        new int[] {29, 0, 59},
+        new int[] {28, 0, 76},
       },
       new int[][] {
         new int[] {-1, 1, 6},
@@ -1979,9 +1976,7 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 3, 69},
-        new int[] {26, 0, 56},
-        new int[] {27, 0, 57},
-        new int[] {28, 0, 58},
+        new int[] {26, 0, 96},
       },
       new int[][] {
         new int[] {-1, 1, 24},
@@ -2015,10 +2010,6 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 1, 20},
-        new int[] {0, 0, 81},
-        new int[] {1, 0, 82},
-        new int[] {3, 0, 83},
-        new int[] {8, 0, 84},
       },
       new int[][] {
         new int[] {-1, 3, 77},
@@ -2162,10 +2153,7 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 3, 101},
-        new int[] {26, 0, 56},
-        new int[] {27, 0, 57},
-        new int[] {28, 0, 58},
-        new int[] {29, 0, 59},
+        new int[] {28, 0, 122},
       },
       new int[][] {
         new int[] {-1, 3, 102},
@@ -2259,10 +2247,6 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 1, 19},
-        new int[] {0, 0, 81},
-        new int[] {1, 0, 82},
-        new int[] {3, 0, 83},
-        new int[] {8, 0, 84},
       },
       new int[][] {
         new int[] {-1, 1, 54},
@@ -2369,10 +2353,8 @@ public class Parser
         new int[] {38, 66},
         new int[] {39, 67},
         new int[] {42, 75},
-        new int[] {53, 76},
         new int[] {59, 80},
         new int[] {79, 102},
-        new int[] {101, 122},
         new int[] {121, 127},
       },
       new int[][] {
@@ -2401,7 +2383,6 @@ public class Parser
       },
       new int[][] {
         new int[] {-1, 65},
-        new int[] {69, 96},
       },
     };
 
@@ -2432,7 +2413,7 @@ public class Parser
       "expecting: '&&', '||', '!=', '==', ';', ',', ')', ']'",
       "expecting: '&&', '||', '!=', '<', '>', '>=', '<=', '==', '+', '-', ';', ',', ')', ']'",
       "expecting: '&&', '||', '!=', '==', ';'",
-      "expecting: int, float, id",
+      "expecting: int",
       "expecting: '&&', '||', '!=', '==', ',', ')'",
       "expecting: '&&', '||', '!=', '==', ']'",
       "expecting: ']'",
@@ -2444,11 +2425,11 @@ public class Parser
       0, 1, 2, 3, 0, 1, 3, 3, 4, 1, 5, 2, 5, 6, 7, 8, 
       8, 9, 9, 10, 10, 10, 10, 11, 12, 8, 8, 8, 8, 8, 8, 8, 
       12, 13, 13, 14, 15, 16, 16, 16, 17, 18, 16, 3, 12, 12, 12, 12, 
-      12, 12, 12, 2, 5, 16, 5, 19, 20, 20, 21, 16, 22, 23, 24, 20, 
-      20, 20, 22, 25, 8, 26, 19, 9, 19, 19, 27, 28, 27, 1, 5, 16, 
+      12, 12, 12, 2, 5, 1, 5, 19, 20, 20, 21, 16, 22, 23, 24, 20, 
+      20, 20, 22, 25, 8, 26, 19, 9, 19, 19, 27, 28, 19, 1, 5, 16, 
       22, 16, 16, 16, 16, 5, 16, 16, 16, 16, 16, 16, 16, 16, 5, 8, 
-      29, 8, 30, 9, 4, 16, 28, 20, 23, 23, 23, 23, 8, 31, 31, 31, 
-      31, 20, 20, 20, 20, 8, 9, 19, 8, 16, 27, 20, 12, 12, 8, 25, 
+      29, 8, 30, 9, 4, 1, 28, 20, 23, 23, 23, 23, 8, 31, 31, 31, 
+      31, 20, 20, 20, 20, 8, 9, 19, 8, 16, 19, 20, 12, 12, 8, 25, 
       8, 8, 8, 
     };
 }
