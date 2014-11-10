@@ -1,7 +1,8 @@
 Program Complete : Some errors 
 added x of type int to the stringhash
 added w of type int to the stringhash
-[6]: w has already been declared.
-[7]: blue is not defined.
-added z of type int to the stringhash
+[5]: w has already been declared.
+[6]: blue is not defined.
+added z of type float to the stringhash
+added node of type comp5210.node.AEndEndExp
 Program Complete : No errors 

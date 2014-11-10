@@ -21,7 +21,7 @@ namespace CS426Compiler
             stringhash.Add(inttype.name, inttype);
             stringhash.Add(flttype.name, flttype);
 
-            base.InAProgram(node);
+            
         }
 
         public override void OutAIntDeclareConstantDeclare(comp5210.node.AIntDeclareConstantDeclare node)
@@ -60,7 +60,7 @@ namespace CS426Compiler
                 }
 
             }
-            base.OutAIntDeclareConstantDeclare(node);
+            
         }
       
         public override void OutAFloatDelcareConstantDeclare(comp5210.node.AFloatDelcareConstantDeclare node)
@@ -99,7 +99,7 @@ namespace CS426Compiler
                 }
                 
             }
-            base.OutAFloatDelcareConstantDeclare(node);
+            
         }
         public override void InAVarDeclare(comp5210.node.AVarDeclare node)
         {
@@ -152,7 +152,7 @@ namespace CS426Compiler
 
         public override void OutAExpressionAssignStatement(comp5210.node.AExpressionAssignStatement node)
         {
-
+            /*
             string name = node.GetId().Text;
            
 
@@ -171,7 +171,7 @@ namespace CS426Compiler
 
 
                 }
-            }
+            }*/
         }
         public override void OutAArrayAssignStatement(comp5210.node.AArrayAssignStatement node)
         {
@@ -214,7 +214,7 @@ namespace CS426Compiler
                 }
 
             }
-            base.OutAArrayDeclare(node);
+            
         }
         public override void OutAMoreFormalParameters(comp5210.node.AMoreFormalParameters node)
         {
@@ -308,29 +308,57 @@ namespace CS426Compiler
 
         public override void OutACallTopEndExp(comp5210.node.ACallTopEndExp node)
         {
-            base.OutACallTopEndExp(node);
+            Definition exprdefn;
+            nodehash.TryGetValue(node.GetExp(), out exprdefn);
+            nodehash.Add(node, exprdefn);
         }
         public override void OutAEndEndExp(comp5210.node.AEndEndExp node)
         {
-            base.OutAEndEndExp(node);
-        }
-       
-        
+            Definition exprdefn;
+            nodehash.TryGetValue(node.GetNumber(), out exprdefn);
+            nodehash.Add(node, exprdefn);
+         }
+
+
+
         public override void OutAIntNumber(comp5210.node.AIntNumber node)
         {
-            base.OutAIntNumber(node);
+            //Console.WriteLine("hello int");
+            BasicType inttype = new BasicType();
+            inttype.name = "int";
+            nodehash.Add(node, inttype);
         }
         public override void OutAFloatNumber(comp5210.node.AFloatNumber node)
         {
-            base.OutAFloatNumber(node);
+            //Console.WriteLine("hello float");
+            BasicType flttype = new BasicType();
+            flttype.name = "float";
+            nodehash.Add(node, flttype);
+            
+                       
         }
         public override void OutAIdNumber(comp5210.node.AIdNumber node)
         {
-            base.OutAIdNumber(node);
+            Definition iddefn;
+            if (!stringhash.TryGetValue(node.GetId().Text, out iddefn))
+            {
+                Console.WriteLine("[" + node.GetId().Line + "]: " +
+                    node.GetId().Text + " is not defined");
+            }
+            // you should really make sure that iddefn is a variable 
+            // definition
+            else
+            {
+                nodehash.Add(node, (iddefn as VariableDefinition).vartype);
+            }
         }
         public override void OutAArrayNumber(comp5210.node.AArrayNumber node)
         {
             base.OutAArrayNumber(node);
         }
-    }
-}
+            
+        }
+       
+        
+     }
+
