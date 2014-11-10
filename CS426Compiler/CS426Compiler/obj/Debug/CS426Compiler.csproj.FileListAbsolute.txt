@@ -15,3 +15,7 @@ C:\Users\C15Victoria.Rathbone\Documents\Classes\Fall2014\CS426\cs426semantic\CS4
 C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\bin\Debug\CS426Compiler.exe.config
 C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\obj\Debug\CS426Compiler.exe
 >>>>>>> origin/master
+C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\obj\Debug\CS426Compiler.pdb
+C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\bin\Debug\CS426Compiler.exe
+C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\bin\Debug\CS426Compiler.pdb
+C:\Users\C15Gina.Biagetti\Documents\Capstone\cs426semantic\CS426Compiler\CS426Compiler\obj\Debug\CS426Compiler.csprojResolveAssemblyReference.cache
