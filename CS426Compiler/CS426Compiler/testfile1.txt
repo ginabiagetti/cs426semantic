@@ -5,4 +5,7 @@ public void main(){
 	int w[10];
 	int w[2];
 	blue y[1];
+
+	int z;
+	Z = 1;
 }

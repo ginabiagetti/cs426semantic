@@ -152,34 +152,31 @@ namespace CS426Compiler
 
         public override void OutAExpressionAssignStatement(comp5210.node.AExpressionAssignStatement node)
         {
-            
-            string id = node.GetId().Text;
-            Definition typedefn;
-            // lookup the type
+
+            string name = node.GetId().Text;
            
-                // add this variable to the hash table if
-                // variable name isn't already defined.
+
+
+            // add this variable to the hash table if
+            // variable name isn't already defined.
+
+            {
                 VariableDefinition vardefn = new VariableDefinition();
-                vardefn.name = id;
-                vardefn.vartype = typedefn as TypeDefinition;
-                if (stringhash.ContainsKey(id))
-                {//if the string is already in the stringhash, we're good
-                    Console.WriteLine("[" + node.GetSemicolon().Line + "]: " +
-                    id + " has already been declared.");
-                }
-                else
-                {//if not, error
+                vardefn.name = name;
+
+                if (stringhash.ContainsKey(name))
+                {
                     stringhash.Add(vardefn.name, vardefn);
-                    Console.WriteLine("added " + id + " of type " + id + " to the stringhash");
-                
+                    Console.WriteLine("added " + name + " to the stringhash");
+
 
                 }
-
-            base.OutAExpressionAssignStatement(node);
+            }
         }
         public override void OutAArrayAssignStatement(comp5210.node.AArrayAssignStatement node)
         {
             base.OutAArrayAssignStatement(node);
+            
         }
         public override void OutAArrayDeclare(comp5210.node.AArrayDeclare node)
         {

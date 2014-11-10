@@ -3,4 +3,5 @@ added x of type int to the stringhash
 added w of type int to the stringhash
 [6]: w has already been declared.
 [7]: blue is not defined.
+added z of type int to the stringhash
 Program Complete : No errors 
