@@ -1,0 +1,150 @@
+con int z = 4;
+//fails because z is already declared
+con int z = 3;
+//fails becuase y is not declared
+con y w = 3.4;
+//fails because z is declared but not a type
+con z v = 20;
+con int u = 20;
+con float t = 2.3;
+//fails because of a type mismatch
+con int s = 2.3;
+//fails because of a type mismatch
+con float r = 2;
+
+public void meth(int a, float b){
+
+}
+public void main(){
+	int x;
+	//fails because x is already declared
+	int x;
+	//fails because blue is not a type
+	blue x; 
+	//fails because x is decalared but not a type
+	x y;
+	
+	//array testing--non-integer bounds enforced by grammar
+	int q[10];
+	//fails because x is already declared
+	int x[5]; 
+	//fails because x is already declared but not a type
+	x s[10];
+	
+	//both below fail because not a boolean expression
+	if(x + z){
+
+	}
+	if (3 - 2){
+
+	}
+	//passes; boolean expressions
+	if(x < z){
+
+	}
+	if(3 > 4){
+
+	}
+	//both below fail because not a boolean expression
+	while(x + z){
+
+	}
+	while(3 - 2){
+
+	}
+	//passes; boolean expressions
+	while(x < z){
+
+	}
+	while(3 > 4){
+
+	}
+
+	//begin expression testing
+	//fails because a typename is used
+	x = (3 + int) - 4;
+	x = (3 + z) - 4;
+	//fails because undeclared variable used
+	x = a * 3;
+	x = z * 3;
+	//fails because r is not declared
+	x = r[10] + 3;
+	//fails because meth is not a variable
+	x = meth[4] - 3;
+	//fails because q[float] is not an int
+	x = q[t];
+	int o;
+	o = 2;
+	float p;
+	p = 2.4;
+	//fails because of type mismatch in +
+	x = (o + p);
+	//fails because of type mismatch in -
+	x = (o - p);
+	//fails because of type mismatch in *
+	x = (o * p);
+	//fails because of type mismatch in /
+	x = (o / p);
+	//fails because type isn't int or float in +
+	x = (3 < 2) + (4 > 5);
+	//fails because type isn't int or float in -
+	x = (3 < 2) - (4 > 5);
+	//fails because type isn't int or float in *
+	x = (3 < 2) * (4 > 5);
+	//fails because type isn't int or float in /
+	x = (3 < 2) / (4 > 5);
+	//fails because types aren't boolean
+	if ( o || p){
+	}
+	//fails because types aren't boolean
+	if ( o && p){
+	}
+	//fails because types aren't boolean
+	if (p - 2){
+	}
+	//fails because of type mismatch
+	if ( (3 < 4) || o){
+	}
+	//fails because of type mismatch
+	if ( (3 < 4) || o){
+	}
+	//fails because of type mismatch
+	if ( (3 < 4) && o){
+	}
+	//fails because types don't match in <
+	if ( o < p){
+	}
+	//fails because types don't match in >
+	if ( 3 > 4.5){
+	}
+	//fails because types don't match in <=
+	if ( 3 <= 4.5){
+	}
+	//fails because types don't match in >=
+	if ( 3 >= 4.5){
+	}
+	//fails because types don't match in !=
+	if ( 3 != 4.5){
+	}
+	//fails because types don't match in ==
+	if ( 3 == 4.5){
+	}
+	//fails because types aren't int or float in <
+	if ( ( 4 < 3) < 3){
+	}
+	//fails because types aren't int or float in >
+	if ( ( 4 < 3) > 3){
+	}
+	//fails because types aren't int or float in <=
+	if ( ( 4 < 3) <= 3){
+	}
+	//fails because types aren't int or float in >=
+	if ( ( 4 < 3) >= 3){
+	}
+	//fails because types aren't int or float in !=
+	if ( ( 4 < 3) != 3){
+	}
+	//fails because types aren't int or float in ==
+	if ( ( 4 < 3) == 3){
+	}
+}

@@ -126,7 +126,8 @@ Productions
 
 	  
 	  // if statements
-	  if_statement = if open_parenthesis exp close_parenthesis open_brace list close_brace;
+	  if_statement = if open_parenthesis exp close_parenthesis open_brace list close_brace else_statement;
+	  else_statement = {else} else open_brace list close_brace | {nothing};
 
 	  // while loop
 	  while_loop = while open_parenthesis exp close_parenthesis open_brace list close_brace;

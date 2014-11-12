@@ -1,8 +1,90 @@
-Program Complete : Some errors 
+added z of type int to the stringhash
+[3]: z has already been declared.
+[5]: y is not defined.
+[7]: Type mismatch, should be an int
+added u of type int to the stringhash
+added t of type float to the stringhash
+[11]: Type mismatch, should be an float
+[13]: Type mismatch, should be an int
+added a of type int to the stringhash
+added b of type float to the stringhash
 added x of type int to the stringhash
-added w of type int to the stringhash
-[5]: w has already been declared.
-[6]: blue is not defined.
-added z of type float to the stringhash
-added node of type comp5210.node.AEndEndExp
-Program Complete : No errors 
+[21]: x has already been declared.
+[23]: blue is not defined.
+[25]: x is an invalid type.
+added q of type intarray to the stringhash
+[30]: x has already been declared.
+x is not a type
+[35]: Mismatched variable types
+[35]: If statements must have a boolean expression
+[38]: If statements must have a boolean expression
+[42]: Mismatched variable types
+[42]: If statements must have a boolean expression
+[49]: Mismatched variable types
+[49]: While statements must have a boolean expression
+[52]: While statements must have a boolean expression
+[56]: Mismatched variable types
+[56]: While statements must have a boolean expression
+[66]: Mismatched variable types
+[66]: Mismatched variable types
+[66]: types don't match
+[68]: Mismatched variable types
+[68]: types don't match
+[69]: Mismatched variable types
+[69]: types don't match
+[71]: r is not defined
+[71]: Mismatched variable types
+[71]: types don't match
+[73]: Mismatched variable types
+[73]: types don't match
+[75]: types don't match
+added o of type int to the stringhash
+added p of type float to the stringhash
+[81]: Mismatched variable types
+[81]: types don't match
+[83]: Mismatched variable types
+[83]: types don't match
+[85]: Mismatched variable types
+[85]: types don't match
+[87]: Mismatched variable types
+[87]: types don't match
+[89]: can't assign a number as a boolean
+[91]: can't assign a number as a boolean
+[93]: can't assign a number as a boolean
+[95]: can't assign a number as a boolean
+[97]: Mismatched variable types
+[97]: If statements must have a boolean expression
+[100]: Mismatched variable types
+[100]: If statements must have a boolean expression
+[103]: Mismatched variable types
+[103]: If statements must have a boolean expression
+[106]: Mismatched variable types
+[106]: If statements must have a boolean expression
+[109]: Mismatched variable types
+[109]: If statements must have a boolean expression
+[112]: Mismatched variable types
+[112]: If statements must have a boolean expression
+[115]: Mismatched variable types
+[115]: If statements must have a boolean expression
+[118]: Mismatched variable types
+[118]: If statements must have a boolean expression
+[121]: Mismatched variable types
+[121]: If statements must have a boolean expression
+[124]: Mismatched variable types
+[124]: If statements must have a boolean expression
+[127]: Mismatched variable types
+[127]: If statements must have a boolean expression
+[130]: Mismatched variable types
+[130]: If statements must have a boolean expression
+[133]: Mismatched variable types
+[133]: If statements must have a boolean expression
+[136]: Mismatched variable types
+[136]: If statements must have a boolean expression
+[139]: Mismatched variable types
+[139]: If statements must have a boolean expression
+[142]: Mismatched variable types
+[142]: If statements must have a boolean expression
+[145]: Mismatched variable types
+[145]: If statements must have a boolean expression
+[148]: Mismatched variable types
+[148]: If statements must have a boolean expression
